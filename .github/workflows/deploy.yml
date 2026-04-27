@@ -8,9 +8,8 @@ jobs:
   terraform_job:
     runs-on: self-hosted
     steps:
-      - name: "Checkout code"  # 첫 번째 단계 (대시 '-' 필수)
+      - name: "Checkout code" 
         uses: actions/checkout@v4
 
       - name: "Terraform Apply"  # 두 번째 단계
-        working-directory: ./
         run: terraform apply -auto-approve  # 대시 하나(-)가 표준입니다
