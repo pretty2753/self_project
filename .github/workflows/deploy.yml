@@ -13,3 +13,4 @@ jobs:
 
       - name: "Terraform Apply"  # 두 번째 단계
         run: terraform apply -auto-approve  # 대시 하나(-)가 표준입니다
+        # 되는지 테스트를 위한 푸쉬 및 커밋용 마지막 주석
