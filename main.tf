@@ -86,6 +86,8 @@ resource "aws_security_group" "tmp_alb_sg" {
     }
 }
 resource "aws_security_group" "tmp_bastion_sg" {
+    name = "tmp_bastion_sg"
+    vpc_id = aws_vpc.main.id
     ingress {
         from_port           = 22
         to_port             = 22
@@ -95,6 +97,8 @@ resource "aws_security_group" "tmp_bastion_sg" {
 }
 
 resource "aws_security_group" "tmp_mgmt_sg" {
+    vpc_id = aws_vpc.main.id
+    name = "tmp_mgmt_sg"
     ingress {
         from_port = 22
         to_port = 22
@@ -117,4 +121,7 @@ resource "aws_route_table" "tmp_rt" {
         gateway_id = aws_internet_gateway.tmp_igw.id
     }
 }
-
+resource "aws_route_table_association" "tmp_rt_table" {
+    subnet_id = aws_subnet.subnet_bastion.id
+    route_table_id = aws_route_table.tmp_rt.id
+}
