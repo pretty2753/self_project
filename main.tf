@@ -87,7 +87,7 @@ resource "aws_security_group" "tmp_alb_sg" {
 }
 resource "aws_security_group" "tmp_bastion_sg" {
     name = "tmp_bastion_sg"
-    vpc_id = aws_vpc.main.id
+    vpc_id = aws_vpc.main_vpc.id
     ingress {
         from_port           = 22
         to_port             = 22
@@ -97,7 +97,7 @@ resource "aws_security_group" "tmp_bastion_sg" {
 }
 
 resource "aws_security_group" "tmp_mgmt_sg" {
-    vpc_id = aws_vpc.main.id
+    vpc_id = aws_vpc.main_vpc.id
     name = "tmp_mgmt_sg"
     ingress {
         from_port = 22
