@@ -93,12 +93,13 @@ resource "aws_security_group" "tmp_bastion_sg" {
         cidr_blocks         = ["0.0.0.0/0"]     # 본인 ip ssh접속용
     }
 }
+
 resource "aws_security_group" "tmp_mgmt_sg" {
     ingress {
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = ["0.0.0.0"]
+        cidr_blocks = ["0.0.0.0/0"]
     }
   
 }
@@ -110,7 +111,7 @@ resource "aws_internet_gateway" "tmp_igw" {
 # public subnet 라우팅 테이블 연결 ====================================================
 resource "aws_route_table" "tmp_rt" {
     # 어떤 vpc 의 소속인지 설정
-    vpc_id = aws_vpc.main.id
+    vpc_id = aws_vpc.main_vpc.id
     route {
         cidr_block = "0.0.0.0/0"
         gateway_id = aws_internet_gateway.tmp_igw.id
